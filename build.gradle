@@ -32,3 +32,5 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+ext['spring-security.version']='5.7.0'
