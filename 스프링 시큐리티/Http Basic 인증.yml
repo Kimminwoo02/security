@@ -1,0 +1,9 @@
+Http Basic 인증
+
+Http는 액세스 제어와 인증을 위한 프레임워크를 제공하고 일반적인 인증방식은 Basic 인증방식이다
+
+인증실패시 요청에 대한 응답 헤더에 401을 실어서 보낸다. 
+주의사항으로 base-64로 인코딩된 값은 쉽게 디코딩이 되기 때문에 인증정보가 노출된다. HttpBasic인증은 Https와 같이 TLS 기술이 함께 사용되어야한다.
+
+HttpBasicConfigurer
+ - http Basic 인증에 대한 초기화를 진행

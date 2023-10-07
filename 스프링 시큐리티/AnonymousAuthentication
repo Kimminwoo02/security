@@ -1,0 +1,19 @@
+anonymousAuthenticationfilter
+
+인증을 받는다.-> session(사용자의 유저 객체 저장) -> user객체가 존재하는지 아닌지 판단 (null이면 자원에 접근하지 못한다.)
+
+- 즉 이 필터는 익명사용자 인증 처리 필터이다.
+- 익명사용자와 인증 사용자를 구분해서 처리하기 위한 용도로 사용된다
+- 화면에서 인증 여부를 구현할 때 isAnonymous()와 isAuthenticated()로 구분해서 사용한다
+- 인증객체를 세션에 저장하지 않는다.
+- 인증사용자와 익명사용자를 구분하기 위해서 사용된다.
+
+
+protected void configure(HttpSecurity http) throws Exception{
+    http
+        .authorizeRequest()
+        .anyRequest().authenticated();
+    http
+        .formLoign();
+
+}

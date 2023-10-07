@@ -1,0 +1,42 @@
+스프링 시큐리티에서는 동시 세션을 제어하기 위한 두 가지 방법을 제공한다.
+1. 이전 사용자 세션 만료 :사용자1이 로그인하면 사용자1 세션이 생성되고 사용자2가 이후에 로그인하면 사용자2의 세션이 생긴다.
+                     서버에는 2개의 세션이 생겨있다. 최대 세션 허용개수가1이라면 사용자1의 세션을 만료설정한다.
+
+2. 현재 사용자 인증 실패 : 사용자1이 로그인 후 세션이 생성된 상태라면 이후의 로그인 시도를 다 실패시킨다.
+
+http
+    .authorizeRequests()
+    .anyRequest().authenticated() // 어떤 요청이라도 인증이 안되어있으면 접근이 안된다.
+
+
+
+htp.sessionManagement: 세션 관리 기능이 작동한다.
+ http.sessionManagement()
+ .maximumSEssion(1) // 최대 허용 가능 세션 수, -1: 무제한 로그인 세션 허용
+ .maxSessionsPreventsLogin(True) : 동시 로그인 차단함, false: 기존 세션 만료
+ .invalidSessionUrl("/invalid") : 세션이 유효하지 않을 때 이동할 페이지
+ .expiredUrl("/expired") : 세션이 만료될 경우 이동할 페이지
+
+ 세션 고정 보호
+1.공격자가 서버에 접속하면 서버는 JSESSIONOD를 발급해준다.(쿠키)
+2. 공격자는 자신이 발급받은 쿠키를 사용자에게 심어놓는다.
+3. 사용자는 공격자의 쿠키로 로그인을 시도한다. 그리고 성공한다.
+4. 공격자 쿠키값으로 인증되어있기 때문에 공격자는 사용자 정보를 공유한다.
+
+http.SessionManagement: 세션 관리기능이 작동한다.
+
+http.sessionManagement
+    .sessionFixation().changeSessionId(): // 기본값 :사용자가 인증을 시도하면 그 세션을 그대로 두고 sessionId만 변경한다.
+                      .migratuinSession : 새로운 새션을 생성하고 세션id도 새로 발급된다. 3.1 서블릿 이하에서 기본값이다.
+                      .newSession : 세션이 생성되고 아이디도 새로 발급되지만 이전에서 작성한 속성의 값들을 다 잃어버린다.
+
+세션 정책
+http.sessionManagement(): 세션 관리 기능이 작동함
+
+http.sessionManagement()
+    .sessionCreationPolicy(SessionCreationPolicy. If_required)
+SessionCreationPolicy. Always : 스프링 시큐리티가 항상 세션 생성
+SessionCreationPolicy. If_required : 스프링 시큐리티가 필요 시 생성
+SessionCreationPolicy. Never : 스프링 시큐리티가 생성하지 않지만 이미 존재하면 생성
+SessionCreationPolicy. stateless : 스프링 시큐리티가 생성하지 않고도 존재해도 사용하지 않음
+
