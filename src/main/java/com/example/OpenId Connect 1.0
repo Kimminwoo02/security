@@ -1,0 +1,6 @@
+OpenId Connect 1.0
+- OAuth2.0 프로토콜 위에 구축된 ID 계층으로 OAuth2.0을 확장하여 인증 방식을 표준화 한 OAuth 기반의 인증 프로토ㅗㄹ이다.
+- scope 지정 시 openid를 포함하면 OpenId Connect 사용이 가능하며 인증에 대한 정보는 Id토큰 이라는 JSON 웹 토큰으로 반환된다.
+- OpenId COnnect는 클라이언트가 사용자 Id를 확인할 수 있게 하는 보안 토큰인 ID Token 을 제공한다.
+
+OAuth2.0 : Authorization Framework. 인증처리를 위한 기술이 아니라 인가, 즉 권한을 획득하기 위한 기술이다. 이 권한을 이용해서 자원을 획득하기 위한것이 목표이다.
