@@ -8,3 +8,30 @@ ID Token
 ID Token vs AccessToken
 - id토큰은 API 요청에 사용해서는 안되고 사용자 신원확인을 위해 사용되어져야 한다.
 - access Token은 인증을 위해 사용해서는 안되며 리소스에 접근하기 위해 사용해야 한다.
+
+OIDC Scope
+- openid : 필수 클라이언트가 OpenID Connect 요청을 하고 있음을 인증서버에 알린다.
+- profile : 기본 프로필 클레임에 대한 액세스 요청
+- email : 이메일 및 email_verified 클레임에 대한 엑세스 요청
+- address : 주소 클레임에 대한 액세스 요청
+- phone : phone_number 및 phone_number_verified 클레임에 대한 액세스 요청
+
+OIDC 상호작용 행위자
+1. OpenId Provider
+ - 줄여서 OP라고 하며 OpenId 제공자로서 최종 사용자를 인증하고 인증 결과와 사용자에 대한 정보를 신뢰 당사자에게 제공할 수 있는 OAuth2.0 서버를 의미한다.
+2. Relying Party
+ - 줄여서 RP 라고하며 신뢰 당사자로서 인증 요청을 처리하기 위해 OP에 의존하는 OAuth2.0 애플리케이션을 의미한다.
+
+흐름
+ - 1. RP는 OP에 권한 부여 요청을 보낸다.
+ - 2. OP는 최종 사용자를 인증하고 권한을 얻는다.
+ - 3. OP는 ID 토큰과 액세스 토큰으로 응답한다.
+ - 4. RP는 AccessToken을 사용하여 UserInfo 엔드포인트에 요청을 보낼 수 있다.
+ - 5. UserInfo 엔드포인트는 최종 사용자에 대한 클레임을 반환한다.
+
+ OIDC 로그인 요청
+  - 매개변수 요청 및 응답
+    1.요청 시 openid범위를 scope 매개 변수에 포함해야 한다.
+    2. response_type 매개 변수는 id_token을 포함해야 한다.
+    3. 요청은 nonce 매개 변수를 포함해야 한다.
+    
