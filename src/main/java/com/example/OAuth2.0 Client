@@ -12,3 +12,14 @@ OAuth2.0 Client
  - 인가 서버의 권한 부여 유형에 따른 엔드 포인트와 직접 통신할 수 있는 API를 제공한다.
  - Client Credentials, Resource Owner Password Credentials, Refresh Token
  - 리소스 서버의 보호자원 접근에 대한 연동 모듈을 구현 할 수 있다.
+
+
+ OAuth2.0 Client Fundamentals
+
+클라이언트 권한 부여 요청 시작
+1. 클라이언트가 인가서버로 권한 부여 요청을 하거나 토큰 요청을 할 경우 클라이언트 정보 및 엔드포인트 정보를 참조해서 전달한다.
+2. application.yml 환경설정 파일에 클라이언트 설정과 인가서버 엔드포인트 설정을 한다.
+3. 초기화가 진행되면 application.yml에 있는 클라이언트 및 엔드포인트 정보가 OAuth2ClientProperties의 각 속성에 바인딩 된다.
+4. OAuth2ClientProperties에 바인딩 되어 있는 속성의 갓은 인가서버로 권한부여 요청을 하기 위한 CleientRegistration 클래스의 필드에 저장된다.
+5. OAuth2Client는 ClientRegistraition를 참조해서 권한부여 요청을 위한 매개변수를 구성하고 인가서버와 통신한다.
+
