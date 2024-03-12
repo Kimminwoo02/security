@@ -1,0 +1,25 @@
+개요
+ - OAuth2.0인가 프레임워크의 역할 중 인가서버 및 리소스 서버와의 통신을 담당하는 클라이언트의 기능을 필터 기반으로 구현한 모듈
+ - 간단한 설정만으로 OAuth2.0 인증 및 리소스 접근 권한, 인가서버 엔드 포인트 통신 등의 구현이 가능하며 커스터마이징 확장이 용이하다.
+
+OAuth2.0 Login
+ - 애플리케이션의 사용자를 외부 OAuth2.0 Provider OpenID Connect 1.0 Provider 계정으로 로그인할 수 있는 기능을 제공한다.
+ - 글로벌 서비스 프로바이더인 구글 계정으로 로그인 깃허브 계정으로 로그인 기능을 OAuth2.0을 구현해 사용할 수 있도록 지원한다.
+ - OAuth2.0 인가 프레임워크의 권한 부여 유형 중 Authorization Code 방식을 사용한다
+
+OAuth2.0 Client
+ - OAuth2.0 인가 프레임워크에 정의된 클라이언트 역할을 지원한다.
+ - 인가 서버의 권한 부여 유형에 따른 엔드 포인트와 직접 통신할 수 있는 API를 제공한다.
+ - Client Credentials, Resource Owner Password Credentials, Refresh Token
+ - 리소스 서버의 보호자원 접근에 대한 연동 모듈을 구현 할 수 있다.
+
+
+ OAuth2.0 Client Fundamentals
+
+클라이언트 권한 부여 요청 시작
+1. 클라이언트가 인가서버로 권한 부여 요청을 하거나 토큰 요청을 할 경우 클라이언트 정보 및 엔드포인트 정보를 참조해서 전달한다.
+2. application.yml 환경설정 파일에 클라이언트 설정과 인가서버 엔드포인트 설정을 한다.
+3. 초기화가 진행되면 application.yml에 있는 클라이언트 및 엔드포인트 정보가 OAuth2ClientProperties의 각 속성에 바인딩 된다.
+4. OAuth2ClientProperties에 바인딩 되어 있는 속성의 갓은 인가서버로 권한부여 요청을 하기 위한 CleientRegistration 클래스의 필드에 저장된다.
+5. OAuth2Client는 ClientRegistraition를 참조해서 권한부여 요청을 위한 매개변수를 구성하고 인가서버와 통신한다.
+
