@@ -16,4 +16,9 @@ public class JwtTestController {
     public String test1(){
         return "설정 테스트";
     }
+
+    @GetMapping("/")
+    public String index(){
+        ClientRegistration clientRegistration = this.clientRegistrationRepository.findByRegistrationId("keycloak");
+    }
 }

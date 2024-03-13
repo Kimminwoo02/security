@@ -5,4 +5,9 @@
     - ClientRegistration cleintRegistration = ClientRegistrations.fromIssuerLocation("https://idp.example.com/issuer").build();
     - 위 코드는 200 응답을 받을 때까지 https://idp.example.com/issuer./well-known/openid-configurartion, https://idp.example.com/.well-known/oauth- authorization-server에 차례대로 질의해본다.
 
- 
+ - ClientRegistrationRepository는 Oauth2.0 OpenId Connect1.0의 ClientRegistration 저장소 역할을 한다.
+ - 클라이언트 등록 정보는 궁극적으로 인가 서버가 저장하고 관리하는데 이 레포지토리는 인가 서버에 일차적으로 저장된 클라이어늩 등록 정보의 일부를 검색하는 기능을 제공한다.
+ - 스프링 부트 2.X 자동 설정은 Spring.security.oauth2.client.registration.[registrationId] 하위 프로퍼티를 ClientRegistration 인스턴스에 바인딩하며
+ - 각 클라이언트 레지스트레이션 객체를 ClientRegistrationRepository 안에 구성한다.
+ - ClientRegistrationRepository의 디폴트 구현체는 InMemoryClientRegistrationRepository다.
+ - 자동 설정을 사용하면 ClientRegistrationRepository도 ApplicationContext 내 @Bean으로 등록하며 필요하다면 원하는 곳에 의존성을 주입할 수 있다.
